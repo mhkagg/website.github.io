@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+<link rel="stylesheet" href="https://photopedia.in/wp-content/uploads/2017/12/wide-angle.jpg">
+</head>
+<style>
+
+*:focus {outline:none !important}
+  body{
+    background-image:url("https://images.unsplash.com/photo-1433838552652-f9a46b332c40?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+
+  }
+
+  #regForm {
+  background-color: rgba(134, 187, 216, 0.432);
+  margin: 30px auto;
+  padding: 40px;
+  width: 45%;
+  min-width: 300px;
+  height: 990px;
+}
+
+.cal select{
+  width: 580px;
+  height: 50px;
+
+}
+
+.cal p{
+  font-family: Raleway;
+  font-size: 45px;
+}
+
+/* Style the input fields */
+.cal input {
+  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+  margin-top: 50px;
+margin-bottom: 20px;
+height:45px;
+}
+
+/* Mark input boxes that gets an error on validation: */
+.cal input.invalid {
+  background-color: #ffdddd;
+}
+
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+  align-items: center;
+}
+
+.cal select{
+margin-top: 10px;
+margin-bottom: 20px;
+}
+.cal label{
+  font-family: Raleway;
+margin-top: 10px;
+margin-bottom: 0px;
+}
+
+option:checked {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+option {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+    </style>
+<body>
+    {% include 'navbar.html' %}
+
+<div class="cal">
+    <form id="regForm">
+      {% if request.user.is_authenticated %}
+        <p> Hello {{request.user.username}}, lets begin</p> 
+        {%else%}
+        <p>Hello, lets begin</p>
+        {% endif %}
+        <center>
+ 
+<input type="number" id="passengers" name="passengers" required min="1" max="20" placeholder=" number of passengers " style="width: 37%;">
+
+<input type="number" id="days" name="days" required min="1" max="30" placeholder=" number of days " style="width: 37%;">
+<br>
+
+
+<label for="to"> Destination to:</label>
+<select id="to" name="to" style="width: 27%; margin-right: 20px;" required >
+  <option value=""></option>
+  <option value="Asaam">Assam</option>
+  <option value="Bihar">Bihar</option>
+  <option value="Calcutts">Calcutta</option>
+  <option value="Delhi">Delhi</option>
+  <option value="Goa">Goa</option>
+  <option value="Agra">Agra</option>
+</select>
+
+
+        <label for="from"> Destination from:</label>
+        <select id="from" name="from" style="width: 27%;" required>
+          <option value=""></option>
+          <option value="Asaam">Assam</option>
+          <option value="Bihar">Bihar</option>
+          <option value="Calcutts">Calcutta</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Goa">Goa</option>
+          <option value="Agra">Agra</option>
+        </select>
+        <br>
+
+     
+        <label for="transport">Mode of Transportation</label><br>
+        <select id="transport" name="transport" required>
+          <option value=""></option>
+          <option value="Car">Car</option>
+          <option value="Plane">Plane</option>
+          <option value="train">Train</option>
+        </select>      
+  <br>
+  <label for="food">Type of Food</label><br>
+  <select id="food" name="food" required>
+    <option value=""></option>
+    <option value="Local">Local Cuisine</option>
+    <option value="International">International Cuisine</option>
+    <option value="Both">Both</option>
+  </select>
+<br>
+<label for="comfort">Comfort of Trip</label><br>
+<select id="comfort" name="comfort" required>
+  <option value=""></option>
+  <option value="basic">basic</option>
+  <option value="standard">standard</option>
+  <option value="Deluxe">Deluxe</option>
+</select>
+<br>
+<label for="hotel">Hotel rating</label><br>
+<select id="hotel" name="hotel" required>
+  <option value=""></option>
+  <option value="0">basic</option>
+  <option value="1">1 star</option>
+  <option value="2">2 star</option>
+  <option value="3">3 star</option>
+  <option value="4">4 star</option>
+  <option value="5">5 star</option>
+</select>
+     <br>
+        <input type="button" id="calculate-btn" value="Calculate" style="background-color: green; font-family: raleway; width: 30%; color: #ffffff;"></input>
+        <br>
+        <p id="result"></p>
+
+     
+    </form>
+
+
+</div>
+
+    
+    
+ 
+{% include 'footer.html' %}
+
+    
+<script>
+  
+  const calculateBtn = document.getElementById("calculate-btn");
+const resultEl = document.getElementById("result");
+
+calculateBtn.addEventListener("click", function() {
+  const passengers = document.getElementById("passengers").value;
+  const days = document.getElementById("days").value;
+  const to = document.getElementById("to").value;
+  const from = document.getElementById("from").value;
+  const transport = document.getElementById("transport").value;
+  const hotel = parseInt(document.getElementById("hotel").value);
+  const food = document.getElementById("food").value;
+  const comfort = document.getElementById("comfort").value;
+
+  let transportCost, hotelCost, foodCost, comfortCost, toCost, fromCost;
+
+  switch (transport) {
+    case "Car":
+      transportCost = 0.5;
+      break;
+    case "train":
+      transportCost = 0.3;
+      break;
+    case "Plane":
+      transportCost = 1.5;
+      break;
+    default:
+      transportCost = 0;
+      break;
+  }
+
+  switch (hotel) {
+    case "0":
+      hotelCost = 0;
+      break;
+    case "1":
+      hotelCost = 50;
+      break;
+    case "2":
+      hotelCost = 100;
+      break;
+    case "3":
+      hotelCost = 150;
+      break;
+    case "4":
+      hotelCost = 200;
+      break;
+    case "5":
+      hotelCost = 250;
+      break;
+    default:
+      hotelCost = 0;
+      break;
+  }
+
+  switch (food) {
+    case "Local":
+      foodCost = 50;
+      break;
+    case "International":
+      foodCost = 100;
+      break;
+    case "Both":
+      foodCost = 150;
+      break;
+    default:
+      foodCost = 120;
+      break;
+  }
+
+  switch (comfort) {
+    case "basic":
+      comfortCost = 50;
+      break;
+    case "standard":
+      comfortCost = 100;
+      break;
+    case "Deluxe":
+      comfortCost = 150;
+      break;
+    default:
+      comfortCost = 120;
+      break;
+  }
+
+  switch (to) {
+    case "Assam":
+      toCost = 400;
+      break;
+    case "Bihar":
+      toCost = 600;
+      break;
+    case "Calcutta":
+      toCost = 900;
+      break;
+    case "Delhi":
+      toCost = 400;
+      break;
+    case "Goa":
+      toCost = 200;
+      break;
+    case "Agra":
+      toCost = 700;
+      break;
+    default:
+      toCost = 0;
+      break;
+  }
+
+  switch (from) {
+    case "Assam":
+      fromCost = 300;
+      break;
+    case "Bihar":
+      fromCost = 250;
+      break;
+    case "Calcutta":
+      fromCost = 400;
+      break;
+    case "Delhi":
+      fromCost = 700;
+      break;
+    case "Goa":
+      fromCost = 800;
+      break;
+    case "Agra":
+      fromCost = 300;
+      break;
+    default:
+      fromCost = 0;
+      break;
+  }
+
+  const totalCost = passengers * days * (transportCost + hotelCost + foodCost + comfortCost + toCost + fromCost);
+
+  resultEl.textContent = `The total travel cost is $${totalCost}`;
+});
+ 
+
+
+
+</script>
+</body>
+</html>

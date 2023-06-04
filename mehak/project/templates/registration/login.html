@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Playfair+Display&display=swap" rel="stylesheet">    <script src="https://kit.fontawesome.com/a7fabd9031.js" crossorigin="anonymous">
+    
+</script></head>
+</head>
+<style>
+
+body {
+  background-image: url('https://en-media.thebetterindia.com/uploads/2019/01/Wayanad-1.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
+
+.cont{
+    width:61%;
+    height: 530px;
+    margin-left: 150px;
+    background-color: rgba(149, 196, 206, 0.442);
+    padding-left: 15px;
+    padding-bottom: 35px;
+    font-size: 18px;
+    border-radius: 20px;
+
+}
+
+.bb{
+    background-color: transparent;
+    border: none;
+    width:50px;
+}
+
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: #eee;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+
+.cont1{    
+    width: 45%;
+    float: left;
+    margin-left: 65px;
+}
+
+input[type=password], input[type=text]{
+    width: 380px;
+    height:50px;
+    margin-bottom: 15px;
+    background-color: transparent;
+    border-bottom-color:black ;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+
+}
+
+.field-icon {
+  float: right;
+  margin-top: 5;
+margin-right: 15px;
+
+}
+
+.wide {
+    max-width: 540px;
+    height: 600px;
+    padding-bottom: 60px;
+    padding-left: 30px;
+    float: right;
+    margin-right: 20px;
+}
+
+.section-title{
+    margin-left: 30px;
+        padding-left: 15px;
+
+}
+
+::placeholder { 
+  color: rgb(0, 0, 0);
+
+}
+
+.wide p{
+    font-size:22px;
+    font-family: 'Playfair Display', serif;
+}
+
+.fab{
+    color: black;
+}
+
+
+
+    </style>
+<body>
+
+    {% include 'navbar.html' %}
+
+
+           <div class="cont1">
+            {% include 'heading.html' %}
+            <div class="cont">
+                <h1> Hello There!</h1>
+
+              {% block content %}
+              <form  method="POST" class="form-group" >
+            {% csrf_token %}
+           
+
+            {% load widget_tweaks %}
+     
+             
+            <div class="form-group">
+              {% render_field form.username type="text" class="::placeholder form-control" id="exampleInputUsername" placeholder="Username" autocomplete="off"%}
+            </div>
+             
+            <div class="form-group">
+              {% render_field form.password type="password" class="::placeholder form-control" id="password-field" placeholder="Password" name="password" autocomplete="off" %}
+              <!-- <span toggle="#password-field" class="fa-solid fa-eye-slash field-icon toggle-password"></span> -->
+            </div>
+
+            
+            {% for field in form %}
+            <p>
+            {% for error in field.errors %}
+                <p style="color: red; font-size: 10;">{{ error }}</p>
+            {% endfor %}
+            </p>
+            {% endfor %}
+
+
+
+  
+    <button type="submit" class="btn btn-success" style="width:370px; margin-top: 15px;">Login</button>
+    
+    <div class="text-center">
+        <p>Don't have an accoount? Create one <a href="/signup">here</a></p>
+        <p>Sign up with:</p>
+        <button type="button" class=" bb">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+    
+        <button type="button" class=" bb">
+          <i class="fab fa-google"></i>
+        </button>
+    
+        <button type="button" class=" bb ">
+          <i class="fab fa-twitter"></i>
+        </button>
+    
+
+    
+    </div>
+
+  </form>
+  {% endblock %}
+
+</div>
+</div>
+
+
+
+<div class="wide">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://www.educationworld.in/wp-content/uploads/2020/10/Sri-Ranganathaswamy-Temple.jpg" class="d-block w-100" alt="phi phi islands" width="540" height="600">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Tamil Nadu</h3>
+          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.traveltriangle.com/blog/wp-content/uploads/2018/02/assam-tourist-places.jpg" class="d-block w-100" alt="london" width="540" height="600">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Assam</h3>
+          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://cdn.getyourguide.com/img/location/533591c8ce856.jpeg/68.jpg" class="d-block w-100" alt="venice" width="540" height="600">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Agra</h3>
+          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://peakvisor.com/img/news/Jammu-and-Kashmir-Srinagar.jpg" class="d-block w-100" alt="venice" width="540" height="600">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Jammu</h3>
+          </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://www.tripsavvy.com/thmb/61PI7mnXve3Q62-XnUe8x-3Y4cc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-166815386-3421ad5bc2e948eea121c1b5824cb792.jpg" class="d-block w-100" alt="venice" width="540" height="600">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Leh</h3>
+          </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+
+<script>
+$(".toggle-password").click(function() {
+
+$(this).toggleClass("fa-regular fa-eye");
+var input = $($(this).attr("toggle"));
+if (input.attr("type") == "password") {
+  input.attr("type", "text");
+} else {
+  input.attr("type", "password");
+}
+});
+
+</script>
+</body>
+</html>

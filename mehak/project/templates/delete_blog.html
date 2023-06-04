@@ -1,0 +1,18 @@
+<style>
+h2{
+    margin-top;10px;
+}
+</style>
+<body style="background-color: #F8EAD8;">
+    <center> 
+        {% include "navbar.html" %}
+    <h2>Delete Blog</h2>
+    <p>Are you sure you want to delete "{{ blog.name }}"?</p>
+    <form method="post">
+       
+        {% csrf_token %}
+        <button type="submit">Yes, delete it</button>
+    
+    </form>
+    <center> 
+</body>

@@ -1,0 +1,113 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Playfair+Display&display=swap" rel="stylesheet">    
+<script src="https://kit.fontawesome.com/a7fabd9031.js" crossorigin="anonymous"></script>
+<style>
+.card-footer{
+    text-align:right;
+}
+   form input[type=text]{
+        height:50px;
+        width:390px;
+        margin-bottom:10px;
+        padding:0 20px;
+        border-radius:2px;
+        display:block;
+        border:1px solid rgb(62, 131, 159);
+        text-align:left;
+    }
+    .ap p{
+    font-size:22px;
+    font-family: 'Playfair Display', serif;
+    text-align:center;
+}
+    textarea {
+        padding:10px 10px;
+        display: block;
+        border:1px solid rgb(62, 131, 159);
+        padding:8 20px;
+        border-radius:2px;
+        display: flex;
+  overflow-wrap: break-word;
+  width:390px;
+    } 
+    
+    .whole {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        margin: 0;
+        margin-left: 30px;
+    }
+    
+    .col1 {
+        flex: 0 0 auto;
+        width: 500px;
+        margin-top:52px;
+    }
+    
+    .col2 {
+        flex: 1;
+        margin-bottom:10px;
+        overflow: auto;
+        height: 80%;
+        margin: 0 20px;
+    }
+
+    .fa-regular, .fa-solid{
+        color:black;
+    }
+
+  .card {
+        margin-bottom:20px;
+    } 
+
+    .btn1{
+        margin-top:10px;
+        background-color:rgb(62, 131, 159);
+        color:white;
+        width:320px;
+        border:none;
+        height:50px;
+    }  
+
+</style>
+<body style="background-color: rgb(213, 226, 238);">
+    {% include "navbar.html" %}
+    <div class="whole">
+        <div class="col1">
+            <form action="../blogs/" method="POST">
+                <div class="ap">
+                <p>The Travel Diaries: Journeys, Experiences, and Memories</p></div>
+                <center>
+                <input type="text" name="name" placeholder="Enter Name" required autocomplete="off">
+                
+                <textarea cols="48" rows="10" name="message" placeholder="Enter your experience..." required></textarea>
+                <input type="submit" value="Submit" class="btn1">
+                <center>
+            </form>
+        </div>
+        <div class="col2">
+            {% for blogs in mydata %}
+            <div class="card" style="width: max-width;">
+                <h4 style="margin: 10px 20px 0px 20px;">{{ blogs.name }}</h4>
+                <hr>
+                <div class="card-body">
+                <p class="card-text">{{ blogs.message }}</p>
+                </div>
+                <div class="card-footer">
+                    <!-- <a href="{% url 'edit_blog' blog_id=blogs.id %}"><i class="fa-regular fa-pen-to-square"></i></a>  -->
+                    <a href="{% url 'delete_blog' blog_id=blogs.id %} "><i class="fa-solid fa-trash-can"></i></a>
+                    
+                </div>
+              
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+

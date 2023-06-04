@@ -1,0 +1,19 @@
+Destination,Transport Mode,Hotel Type,Flight Cost,Car Rental Cost,Train Cost,Hotel Cost
+Paris,flight,budget,250,100,200,80
+Paris,flight,midrange,250,100,200,120
+Paris,flight,luxury,250,100,200,200
+Paris,car,budget,150,50,100,80
+Paris,car,midrange,150,50,100,120
+Paris,car,luxury,150,50,100,200
+Paris,train,budget,100,75,50,80
+Paris,train,midrange,100,75,50,120
+Paris,train,luxury,100,75,50,200
+New York,flight,budget,500,200,400,100
+New York,flight,midrange,500,200,400,150
+New York,flight,luxury,500,200,400,300
+New York,car,budget,300,100,200,100
+New York,car,midrange,300,100,200,150
+New York,car,luxury,300,100,200,300
+New York,train,budget,200,150,100,100
+New York,train,midrange,200,150,100,150
+New York,train,luxury,200,150,100,300

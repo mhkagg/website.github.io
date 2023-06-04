@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Playfair+Display&display=swap" rel="stylesheet">    
+<script src="https://kit.fontawesome.com/a7fabd9031.js" crossorigin="anonymous"></script>
+
+</head>
+<style>
+
+.map{
+    width:70%;
+    height: 150px;
+    margin-bottom: 20px;
+    margin-top:30px
+
+}
+
+p{
+    font-size:22px;
+    font-family: 'Playfair Display', serif;
+    margin-top:10px;
+    margin-bottom: 20px
+}
+
+
+input{
+  outline: none;
+
+}
+
+::placeholder { 
+  color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.a{
+  display: flex;
+  justify-content: center;
+}
+
+.form-group{
+    margin: auto;
+    height:50px;
+   
+
+display: block;
+}
+.form-group input{
+    height:40px;
+    width: 195px;
+}
+
+
+    </style>
+<body style="background-color: rgb(213, 226, 238);">
+    {% include 'navbar.html' %}
+    
+    <center>
+        <p style="font-size:30px; text-align:center;">THE WORLD IS TOO BIG TO TO STAY IN ONE PLACE AND <BR> LIFE IS TOO SHORT TO DO JUST ONE THING.</p>
+
+        {% load widget_tweaks %}
+<form class= "form-inline my-2 my-lg-0" method="POST">
+    {% csrf_token %}
+
+    <div class="form-group">
+        {% render_field form.address type="text" class="::placeholder form-control" id="address" placeholder="Search For Location" %}
+
+<button class="btn btn-success my-2 my-sm-0 mx-3" style="background-color:rgb(62, 131, 159); border:rgb(62, 131, 159);" type="submit">Search</button>    
+    </div>    
+    
+
+        
+     
+    </form>
+    
+    <div class="map" > 
+{{m| safe}}
+    </div>
+
+
+</center>
+    <br>
+
+
+    
+
+</body>
+</html>
